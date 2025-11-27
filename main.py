@@ -86,4 +86,5 @@ print("\nError Ratio:\n", error_ratio)
 error_ratio.plot.hist()
 plt.show()
 
+# high error ratios for smaller countries; lower ratios for bigger countries
 print("\nSort error ratios by country:\n", error_ratio.sort_values())
