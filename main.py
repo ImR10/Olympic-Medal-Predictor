@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -73,6 +74,16 @@ print("\nErrors by team:\n", error_by_team)
 
 # check how many medals country earned by average
 medals_by_team = test["medals"].groupby(test["team"]).mean()
+
+# clean and plot error_ratio (how close predictions were to actual medals)
 error_ratio = error_by_team / medals_by_team
+# clean up NaN values
 error_ratio[~pd.isnull(error_ratio)]
+# clean up infinite values
+error_ratio = error_ratio[np.isfinite(error_ratio)]
 print("\nError Ratio:\n", error_ratio)
+
+error_ratio.plot.hist()
+plt.show()
+
+print("\nSort error ratios by country:\n", error_ratio.sort_values())
